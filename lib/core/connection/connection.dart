@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:beta_sms_mobile/presentation/theme/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 //import 'package:connectivity_plus/connectivity_plus.dart';
@@ -10,7 +13,7 @@ Future<bool> checkInternet() async {
     final res = await InternetConnectionChecker().hasConnection;
     // final connectivityResult = await (Connectivity().checkConnectivity());
     if (!res) {
-      throw "check your internet connection and try again";
+      throw "Check your Connection and Try Again";
     } else {
       return res;
     }
@@ -29,14 +32,15 @@ final connectionProvider = StreamProvider.autoDispose((ref) async* {
       case InternetConnectionStatus.connected:
         break;
       case InternetConnectionStatus.disconnected:
-        // Fluttertoast.showToast(
-        //     msg: "check your internet connection",
-        //     toastLength: Toast.LENGTH_SHORT,
-        //     gravity: ToastGravity.TOP,
-        //     timeInSecForIosWeb: 1,
-        //     backgroundColor: AppColors.primaryColor,
-        //     textColor: AppColors.secondaryColor,
-        //     fontSize: 14.sp);
+        Fluttertoast.showToast(
+            msg: "Check your Internet Connection",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.TOP,
+            timeInSecForIosWeb: 1,
+            backgroundColor: AppColors.kRed,
+            textColor: AppColors.kWhite,
+            fontSize: 14.sp);
+
         break;
     }
     stream.add(status);

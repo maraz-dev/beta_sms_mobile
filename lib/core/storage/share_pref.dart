@@ -7,32 +7,11 @@ class SharedPrefManager {
       prefs.setBool("isFirstLaunch", isFirstLaunch);
   static bool get isFirstLaunch => prefs.getBool("isFirstLaunch") ?? true;
 
-  static set isLoggedIn(bool isLoggedIn) =>
-      prefs.setBool("isLoggedIn", isLoggedIn);
-  static bool get isLoggedIn => prefs.getBool("isLoggedIn") ?? false;
-
-  static set hasBiometrics(bool hasBiometrics) =>
-      prefs.setBool("hasBiometrics", hasBiometrics);
-  static bool get hasBiometrics => prefs.getBool("hasBiometrics") ?? false;
-
-  static set isActive(bool isActive) => prefs.setBool("isActive", isActive);
-  static bool get isActive => prefs.getBool("isActive") ?? false;
-
   static set email(String email) => prefs.setString("email", email);
   static String get email => prefs.getString("email") ?? '';
 
   static set userId(String userId) => prefs.setString("userId", userId);
   static String get userId => prefs.getString("userId") ?? '';
-
-  static set amount(String amount) => prefs.setString("amount", amount);
-  static String get amount => prefs.getString("amount") ?? "0.0";
-
-  static set progress(int progress) => prefs.setInt("progress", progress);
-  static int get progress => prefs.getInt("progress") ?? 0;
-
-  static set revealAmount(bool revealAmount) =>
-      prefs.setBool("revealAmount", revealAmount);
-  static bool get revealAmount => prefs.getBool("revealAmount") ?? false;
 
   /// user Preference
   static set avatar(String avatar) => prefs.setString("avatar", avatar);
@@ -48,7 +27,6 @@ class SharedPrefManager {
   static void clear() {
     //prefs.clear();
     SharedPrefManager.isFirstLaunch = false;
-    SharedPrefManager.isLoggedIn = false;
   }
 
 // Init Shared Preference

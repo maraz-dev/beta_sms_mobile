@@ -79,11 +79,7 @@ class HiveStorageService implements HiveStorageBase {
 }
 
 enum StorageKey {
-  contacts,
-  register,
-  servercontacts,
   userProfile,
-  walletInfo,
 }
 
 class Bee {

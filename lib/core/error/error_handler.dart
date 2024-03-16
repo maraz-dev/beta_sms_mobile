@@ -33,7 +33,7 @@ class DioExceptions implements Exception {
         message = HttpErrorStrings.uknown;
         break;
       default:
-        message = "Something went wrong please try again later";
+        message = "Something Went Wrong. Please Try Again Later";
         break;
     }
   }
@@ -42,22 +42,22 @@ class DioExceptions implements Exception {
       case 400:
         return handleError(error);
       case 401:
-        return error["message"];
+        return error["error"]["message"];
       case 424:
-        return error["message"];
+        return error["error"]["message"];
       case 403:
         // FailureRes result = FailureRes.fromJson(error);
-        return "Error occurred";
+        return "Error Occurred";
       case 404:
         return handleError(error);
       case 500:
-        return "An Error occurred.Try again later";
+        return "An Error Occurred. Try again later";
       case 502:
-        return "Bad gateway";
+        return "Bad Gateway";
       case 504:
-        return "Service unavaiilable. Please try again later";
+        return "Service Unavaiilable. Please Try Again Later";
       default:
-        return "Oops something went wrong";
+        return "Oops Something Went Wrong";
     }
   }
 
@@ -89,14 +89,14 @@ class DioExceptions implements Exception {
       } else if (result.error.token!.isNotEmpty) {
         return result.error.token.toString();
       } else if (result.error.recipient!.isNotEmpty) {
-        return 'user does not exist';
+        return 'User does not Exist';
       } else if (result.message.isNotEmpty) {
         return result.message.toString();
       } else {
         return error["message"];
       }
     } else {
-      return error["message"];
+      return error["error"]["message"];
     }
   }
 

@@ -6,6 +6,8 @@ import 'package:beta_sms_mobile/core/storage/secure-storage/secure_storage.dart'
 import 'package:beta_sms_mobile/core/storage/share_pref.dart';
 import 'package:beta_sms_mobile/core/third-party/environment.dart';
 import 'package:beta_sms_mobile/core/utils/app_url.dart';
+import 'package:beta_sms_mobile/data/remote/auth/auth_impl.dart';
+import 'package:beta_sms_mobile/data/remote/auth/auth_service.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -41,40 +43,24 @@ final secureStorageService = Provider<SecureStorageBase>(
 
 final _networkService = Provider<HttpService>((ref) => NetworkService());
 
-// //-------------------> Auth Service
+/// Auth Service
 
-// final _authService = Provider<AuthService>((ref) {
-//   var network = ref.watch(_networkService);
-//   var hiveStorage = ref.watch(hiveStorageService);
-//   var secureStorage = ref.watch(secureStorageService);
-//   return AuthService(
-//       networkService: network,
-//       storage: secureStorage,
-//       hivestorage: hiveStorage);
-// });
+final _authService = Provider<AuthService>((ref) {
+  var network = ref.watch(_networkService);
+  var hiveStorage = ref.watch(hiveStorageService);
+  var secureStorage = ref.watch(secureStorageService);
+  return AuthService(
+      networkService: network,
+      storage: secureStorage,
+      hivestorage: hiveStorage);
+});
 
-// class AuthService {}
-
-// final authRepository = Provider<AuthRepository>(
-//   (ref) {
-//     final authService = ref.watch(_authService);
-//     return AuthManager(authService);
-//   },
-// );
-
-// /// ------------------------------>>>>>>>>>>   User Profile
-// ///
-
-// final _userService = Provider<UserService>((ref) {
-//   var network = ref.watch(_networkService);
-//   var hiveStorage = ref.watch(hiveStorageService);
-//   return UserService(networkService: network, hivestorage: hiveStorage);
-// });
-
-// final userRepository = Provider<UserRepository>((ref) {
-//   var userService = ref.watch(_userService);
-//   return UserManager(userService);
-// });
+final authRepository = Provider<AuthRepository>(
+  (ref) {
+    final authService = ref.watch(_authService);
+    return AuthImpl(authService);
+  },
+);
 
 // /// -------------------------------------->>>>>>>>>>   Transaction
 // ///
