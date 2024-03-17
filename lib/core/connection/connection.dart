@@ -47,7 +47,7 @@ final connectionProvider = StreamProvider.autoDispose((ref) async* {
   });
 
   await for (final value in stream.stream) {
-    log('stream value => ${value.toString()}');
+    log('Stream Value => ${value.toString()}');
     yield value;
   }
   ref.onDispose(() {

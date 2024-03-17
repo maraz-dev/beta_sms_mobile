@@ -15,7 +15,7 @@ class HiveStorageService implements HiveStorageBase {
     return await Hive.openBox<T>(boxName);
   }
 
-  Future<void> openAppBox([String boxName = 'RETNA_APP']) async {
+  Future<void> openAppBox([String boxName = 'BETA_SMS_APP']) async {
     hiveBox = await Hive.openBox<dynamic>(boxName);
   }
 

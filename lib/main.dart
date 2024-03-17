@@ -20,15 +20,16 @@ void main() {
     final HiveStorageBase initializeStorageService = HiveStorageService();
     await initializeStorageService.init();
 
-    // final container = ProviderContainer(
-    //   overrides: [
-    //     hiveStorageService.overrideWithValue(initializeStorageService),
-    //   ],
-    // );
+    final container = ProviderContainer(
+      overrides: [
+        hiveStorageService.overrideWithValue(initializeStorageService),
+      ],
+    );
 
     runApp(
-      const ProviderScope(
-        child: MainApp(),
+      UncontrolledProviderScope(
+        container: container,
+        child: const MainApp(),
       ),
     );
   }, (error, stack) {

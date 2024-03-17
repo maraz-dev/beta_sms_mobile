@@ -9,6 +9,8 @@ class LoginNotifier extends AutoDisposeAsyncNotifier<String> {
     state = const AsyncLoading();
     state =
         await AsyncValue.guard(() => ref.read(authRepository).login(loginReq));
+
+    if (!state.hasError) {}
   }
 
   @override

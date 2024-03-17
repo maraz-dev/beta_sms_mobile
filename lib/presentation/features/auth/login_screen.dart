@@ -114,7 +114,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     inputType: TextInputType.emailAddress,
                   ),
                   SizedBox(
-                    height: 5.h,
+                    height: 10.h,
                   ),
                   GestureDetector(
                     onTap: () {},
@@ -126,7 +126,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 40.h,
+                    height: 30.h,
                   ),
                   MainButton(
                     isLoading: isLoginLoading.isLoading,
