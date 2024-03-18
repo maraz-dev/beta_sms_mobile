@@ -14,7 +14,7 @@ class UserStorageService {
       print("RESULT ----------->>> $result");
 
       if (result != null) {
-        return result;
+        return UserResponse.fromJson(result);
       } else {
         return UserResponse();
       }

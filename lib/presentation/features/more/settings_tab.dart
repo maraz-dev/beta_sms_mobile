@@ -1,19 +1,21 @@
+import 'package:beta_sms_mobile/presentation/features/more/vm/providers.dart';
 import 'package:beta_sms_mobile/presentation/utils/buttons.dart';
 import 'package:beta_sms_mobile/presentation/utils/input_fields.dart';
 import 'package:beta_sms_mobile/presentation/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SettingsTab extends StatefulWidget {
+class SettingsTab extends ConsumerStatefulWidget {
   const SettingsTab({
     super.key,
   });
 
   @override
-  State<SettingsTab> createState() => _SettingsTabState();
+  ConsumerState<SettingsTab> createState() => _SettingsTabState();
 }
 
-class _SettingsTabState extends State<SettingsTab> {
+class _SettingsTabState extends ConsumerState<SettingsTab> {
   final TextEditingController fullName = TextEditingController();
   final TextEditingController emailAddress = TextEditingController();
   final TextEditingController phoneNo = TextEditingController();
@@ -28,6 +30,7 @@ class _SettingsTabState extends State<SettingsTab> {
 
   @override
   Widget build(BuildContext context) {
+    final accountDetails = ref.watch(getAccountDetailsProvider);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(

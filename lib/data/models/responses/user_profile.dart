@@ -24,7 +24,7 @@ class UserResponse {
   bool? isPinSet;
   String? bankName;
   bool? isKycCompleted;
-  //Token? token;
+  Token? token;
   String? tokenType;
   String? agentCode;
   bool? isEmailConfirmed;
@@ -38,7 +38,7 @@ class UserResponse {
   bool? isDefaultPassword;
   String? tierCode;
   bool? isKycSentToThirdParty;
-  //PartnerWallet? partnerWallet;
+  PartnerWallet? partnerWallet;
 
   UserResponse({
     this.id,
@@ -55,7 +55,7 @@ class UserResponse {
     this.isPinSet,
     this.bankName,
     this.isKycCompleted,
-    //this.token,
+    this.token,
     this.tokenType,
     this.agentCode,
     this.isEmailConfirmed,
@@ -69,76 +69,8 @@ class UserResponse {
     this.isDefaultPassword,
     this.tierCode,
     this.isKycSentToThirdParty,
-    //this.partnerWallet,
+    this.partnerWallet,
   });
-
-  UserResponse copyWith({
-    String? id,
-    String? firstName,
-    String? lastName,
-    String? userName,
-    String? email,
-    String? phoneNumber,
-    String? status,
-    String? roleCode,
-    String? referalCode,
-    String? userReferalCode,
-    String? country,
-    bool? isPinSet,
-    String? bankName,
-    bool? isKycCompleted,
-    Token? token,
-    String? tokenType,
-    String? agentCode,
-    bool? isEmailConfirmed,
-    bool? isPhoneNumberConfirmed,
-    String? lga,
-    String? address,
-    String? state,
-    bool? isSecurityQuestionSet,
-    bool? isPushNotificationSet,
-    bool? isDeviceTokenValidated,
-    bool? isDefaultPassword,
-    String? tierCode,
-    bool? isKycSentToThirdParty,
-    PartnerWallet? partnerWallet,
-  }) =>
-      UserResponse(
-        id: id ?? this.id,
-        firstName: firstName ?? this.firstName,
-        lastName: lastName ?? this.lastName,
-        userName: userName ?? this.userName,
-        email: email ?? this.email,
-        phoneNumber: phoneNumber ?? this.phoneNumber,
-        status: status ?? this.status,
-        roleCode: roleCode ?? this.roleCode,
-        referalCode: referalCode ?? this.referalCode,
-        userReferalCode: userReferalCode ?? this.userReferalCode,
-        country: country ?? this.country,
-        isPinSet: isPinSet ?? this.isPinSet,
-        bankName: bankName ?? this.bankName,
-        isKycCompleted: isKycCompleted ?? this.isKycCompleted,
-        //token: token ?? this.token,
-        tokenType: tokenType ?? this.tokenType,
-        agentCode: agentCode ?? this.agentCode,
-        isEmailConfirmed: isEmailConfirmed ?? this.isEmailConfirmed,
-        isPhoneNumberConfirmed:
-            isPhoneNumberConfirmed ?? this.isPhoneNumberConfirmed,
-        lga: lga ?? this.lga,
-        address: address ?? this.address,
-        state: state ?? this.state,
-        isSecurityQuestionSet:
-            isSecurityQuestionSet ?? this.isSecurityQuestionSet,
-        isPushNotificationSet:
-            isPushNotificationSet ?? this.isPushNotificationSet,
-        isDeviceTokenValidated:
-            isDeviceTokenValidated ?? this.isDeviceTokenValidated,
-        isDefaultPassword: isDefaultPassword ?? this.isDefaultPassword,
-        tierCode: tierCode ?? this.tierCode,
-        isKycSentToThirdParty:
-            isKycSentToThirdParty ?? this.isKycSentToThirdParty,
-        //partnerWallet: partnerWallet ?? this.partnerWallet,
-      );
 
   factory UserResponse.fromJson(Map<String, dynamic> json) => UserResponse(
         id: json["id"],
@@ -155,7 +87,7 @@ class UserResponse {
         isPinSet: json["isPINSet"],
         bankName: json["bankName"],
         isKycCompleted: json["isKycCompleted"],
-        //token: json["token"] == null ? null : Token.fromJson(json["token"]),
+        token: json["token"] == null ? null : Token.fromJson(json["token"]),
         tokenType: json["tokenType"],
         agentCode: json["agentCode"],
         isEmailConfirmed: json["isEmailConfirmed"],
@@ -169,9 +101,9 @@ class UserResponse {
         isDefaultPassword: json["isDefaultPassword"],
         tierCode: json["tierCode"],
         isKycSentToThirdParty: json["isKycSentToThirdParty"],
-        // partnerWallet: json["partnerWallet"] == null
-        //     ? null
-        //     : PartnerWallet.fromJson(json["partnerWallet"]),
+        partnerWallet: json["partnerWallet"] == null
+            ? null
+            : PartnerWallet.fromJson(json["partnerWallet"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -189,7 +121,7 @@ class UserResponse {
         "isPINSet": isPinSet,
         "bankName": bankName,
         "isKycCompleted": isKycCompleted,
-        //"token": token?.toJson(),
+        "token": token?.toJson(),
         "tokenType": tokenType,
         "agentCode": agentCode,
         "isEmailConfirmed": isEmailConfirmed,
@@ -203,16 +135,16 @@ class UserResponse {
         "isDefaultPassword": isDefaultPassword,
         "tierCode": tierCode,
         "isKycSentToThirdParty": isKycSentToThirdParty,
-        //"partnerWallet": partnerWallet?.toJson(),
+        "partnerWallet": partnerWallet?.toJson(),
       };
 }
 
 class PartnerWallet {
   String? accountNumber;
   String? userId;
-  int? balance;
+  double? balance;
   bool? isLien;
-  int? lienAmount;
+  double? lienAmount;
   String? id;
   DateTime? dateCreated;
   DateTime? dateLastModified;
@@ -228,33 +160,12 @@ class PartnerWallet {
     this.dateLastModified,
   });
 
-  PartnerWallet copyWith({
-    String? accountNumber,
-    String? userId,
-    int? balance,
-    bool? isLien,
-    int? lienAmount,
-    String? id,
-    DateTime? dateCreated,
-    DateTime? dateLastModified,
-  }) =>
-      PartnerWallet(
-        accountNumber: accountNumber ?? this.accountNumber,
-        userId: userId ?? this.userId,
-        balance: balance ?? this.balance,
-        isLien: isLien ?? this.isLien,
-        lienAmount: lienAmount ?? this.lienAmount,
-        id: id ?? this.id,
-        dateCreated: dateCreated ?? this.dateCreated,
-        dateLastModified: dateLastModified ?? this.dateLastModified,
-      );
-
   factory PartnerWallet.fromJson(Map<String, dynamic> json) => PartnerWallet(
         accountNumber: json["accountNumber"],
         userId: json["userId"],
-        balance: json["balance"],
+        balance: json["balance"].toDouble(),
         isLien: json["isLien"],
-        lienAmount: json["lienAmount"],
+        lienAmount: json["lienAmount"].toDouble(),
         id: json["id"],
         dateCreated: json["dateCreated"] == null
             ? null
@@ -286,18 +197,6 @@ class Token {
     this.refreshToken,
     this.refreshTokenExpiryTime,
   });
-
-  Token copyWith({
-    String? token,
-    String? refreshToken,
-    DateTime? refreshTokenExpiryTime,
-  }) =>
-      Token(
-        token: token ?? this.token,
-        refreshToken: refreshToken ?? this.refreshToken,
-        refreshTokenExpiryTime:
-            refreshTokenExpiryTime ?? this.refreshTokenExpiryTime,
-      );
 
   factory Token.fromJson(Map<String, dynamic> json) => Token(
         token: json["token"],

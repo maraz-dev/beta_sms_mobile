@@ -42,16 +42,15 @@ class ApiEndpoints {
   /// SMS
   String get sendQuickSMS => "/SmsManagement/SendMessage";
 
+  /// More
+  String get getAccountDetails => "/UserProfile/GetAccountDetails";
+  String get changePassword => "/UserProfile/ChangePassword";
+
   ///Refresh Token
   String get refresh => "/$version/auth/refresh";
 
   /// Auth Token
-  String get token => "accessToken";
-  String get unlockPass => "unlockPass";
-  String get enabled => "enabled";
-  String get disabled => "disabled";
-  String get status => "status";
-  String get refreshToken => "refreshToken";
+  String get token => "token";
 
   /// Transactions
   String get allTransactions => "/transactions";
