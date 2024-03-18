@@ -24,7 +24,7 @@ class UserResponse {
   bool? isPinSet;
   String? bankName;
   bool? isKycCompleted;
-  Token? token;
+  //Token? token;
   String? tokenType;
   String? agentCode;
   bool? isEmailConfirmed;
@@ -38,7 +38,7 @@ class UserResponse {
   bool? isDefaultPassword;
   String? tierCode;
   bool? isKycSentToThirdParty;
-  PartnerWallet? partnerWallet;
+  //PartnerWallet? partnerWallet;
 
   UserResponse({
     this.id,
@@ -55,7 +55,7 @@ class UserResponse {
     this.isPinSet,
     this.bankName,
     this.isKycCompleted,
-    this.token,
+    //this.token,
     this.tokenType,
     this.agentCode,
     this.isEmailConfirmed,
@@ -69,7 +69,7 @@ class UserResponse {
     this.isDefaultPassword,
     this.tierCode,
     this.isKycSentToThirdParty,
-    this.partnerWallet,
+    //this.partnerWallet,
   });
 
   UserResponse copyWith({
@@ -118,7 +118,7 @@ class UserResponse {
         isPinSet: isPinSet ?? this.isPinSet,
         bankName: bankName ?? this.bankName,
         isKycCompleted: isKycCompleted ?? this.isKycCompleted,
-        token: token ?? this.token,
+        //token: token ?? this.token,
         tokenType: tokenType ?? this.tokenType,
         agentCode: agentCode ?? this.agentCode,
         isEmailConfirmed: isEmailConfirmed ?? this.isEmailConfirmed,
@@ -137,7 +137,7 @@ class UserResponse {
         tierCode: tierCode ?? this.tierCode,
         isKycSentToThirdParty:
             isKycSentToThirdParty ?? this.isKycSentToThirdParty,
-        partnerWallet: partnerWallet ?? this.partnerWallet,
+        //partnerWallet: partnerWallet ?? this.partnerWallet,
       );
 
   factory UserResponse.fromJson(Map<String, dynamic> json) => UserResponse(
@@ -155,7 +155,7 @@ class UserResponse {
         isPinSet: json["isPINSet"],
         bankName: json["bankName"],
         isKycCompleted: json["isKycCompleted"],
-        token: json["token"] == null ? null : Token.fromJson(json["token"]),
+        //token: json["token"] == null ? null : Token.fromJson(json["token"]),
         tokenType: json["tokenType"],
         agentCode: json["agentCode"],
         isEmailConfirmed: json["isEmailConfirmed"],
@@ -169,9 +169,9 @@ class UserResponse {
         isDefaultPassword: json["isDefaultPassword"],
         tierCode: json["tierCode"],
         isKycSentToThirdParty: json["isKycSentToThirdParty"],
-        partnerWallet: json["partnerWallet"] == null
-            ? null
-            : PartnerWallet.fromJson(json["partnerWallet"]),
+        // partnerWallet: json["partnerWallet"] == null
+        //     ? null
+        //     : PartnerWallet.fromJson(json["partnerWallet"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -189,7 +189,7 @@ class UserResponse {
         "isPINSet": isPinSet,
         "bankName": bankName,
         "isKycCompleted": isKycCompleted,
-        "token": token?.toJson(),
+        //"token": token?.toJson(),
         "tokenType": tokenType,
         "agentCode": agentCode,
         "isEmailConfirmed": isEmailConfirmed,
@@ -203,7 +203,7 @@ class UserResponse {
         "isDefaultPassword": isDefaultPassword,
         "tierCode": tierCode,
         "isKycSentToThirdParty": isKycSentToThirdParty,
-        "partnerWallet": partnerWallet?.toJson(),
+        //"partnerWallet": partnerWallet?.toJson(),
       };
 }
 

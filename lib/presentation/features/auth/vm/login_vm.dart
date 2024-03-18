@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:beta_sms_mobile/core/di/injector.dart';
+import 'package:beta_sms_mobile/data/local/user_data_impl.dart';
 import 'package:beta_sms_mobile/data/models/requests/login_req.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -10,7 +11,9 @@ class LoginNotifier extends AutoDisposeAsyncNotifier<String> {
     state =
         await AsyncValue.guard(() => ref.read(authRepository).login(loginReq));
 
-    if (!state.hasError) {}
+    if (!state.hasError) {
+      ref.invalidate(localUserProvider);
+    }
   }
 
   @override

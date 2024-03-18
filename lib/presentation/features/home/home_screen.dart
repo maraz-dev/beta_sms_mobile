@@ -1,3 +1,4 @@
+import 'package:beta_sms_mobile/data/local/user_data_impl.dart';
 import 'package:beta_sms_mobile/presentation/features/home/subviews/home_image.dart';
 import 'package:beta_sms_mobile/presentation/features/home/subviews/more_solutions_widget.dart';
 import 'package:beta_sms_mobile/presentation/features/home/subviews/wallet_view.dart';
@@ -6,17 +7,32 @@ import 'package:beta_sms_mobile/presentation/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  /// Method to determine greeting based on time of the day
+  String greeting() {
+    var hour = DateTime.now().hour;
+
+    if (hour < 12) {
+      return 'Good Morning,';
+    } else if (hour < 16) {
+      return 'Good Afternoon';
+    } else {
+      return 'Good Evening,';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final user = ref.watch(localUserProvider);
     return Scaffold(
       body: Column(
         children: [
@@ -44,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Good Afternoon,',
+                            greeting(),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!

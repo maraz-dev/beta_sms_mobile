@@ -1,4 +1,3 @@
-import 'package:beta_sms_mobile/core/error/error_handler.dart';
 import 'package:beta_sms_mobile/core/http/http_service.dart';
 import 'package:beta_sms_mobile/core/storage/hive-storage/hive_storage.dart';
 import 'package:beta_sms_mobile/core/storage/hive-storage/hive_storage_service.dart';
@@ -7,7 +6,6 @@ import 'package:beta_sms_mobile/core/storage/share_pref.dart';
 import 'package:beta_sms_mobile/core/utils/app_url.dart';
 import 'package:beta_sms_mobile/data/models/requests/login_req.dart';
 import 'package:beta_sms_mobile/data/models/responses/user_profile.dart';
-import 'package:dio/dio.dart';
 
 class AuthService {
   final HttpService _networkService;

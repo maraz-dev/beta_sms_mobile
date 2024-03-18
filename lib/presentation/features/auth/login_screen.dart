@@ -45,6 +45,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       }
       if (next is AsyncError) {
         showErrorSnackBar(context, next.error.toString());
+        _passwordController.text = "";
       }
     });
     return Scaffold(

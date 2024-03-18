@@ -6,6 +6,7 @@ import 'package:beta_sms_mobile/core/storage/secure-storage/secure_storage.dart'
 import 'package:beta_sms_mobile/core/storage/share_pref.dart';
 import 'package:beta_sms_mobile/core/third-party/environment.dart';
 import 'package:beta_sms_mobile/core/utils/app_url.dart';
+import 'package:beta_sms_mobile/data/local/user_data_storage.dart';
 import 'package:beta_sms_mobile/data/remote/auth/auth_impl.dart';
 import 'package:beta_sms_mobile/data/remote/auth/auth_service.dart';
 import 'package:get_it/get_it.dart';
@@ -43,6 +44,12 @@ final secureStorageService = Provider<SecureStorageBase>(
 
 final _networkService = Provider<HttpService>((ref) => NetworkService());
 
+/// User Storage
+
+final userStorageService = Provider<UserStorageService>((ref) {
+  return UserStorageService(storageService: ref.watch(hiveStorageService));
+});
+
 /// Auth Service
 
 final _authService = Provider<AuthService>((ref) {
@@ -61,6 +68,8 @@ final authRepository = Provider<AuthRepository>(
     return AuthImpl(authService);
   },
 );
+
+
 
 // /// -------------------------------------->>>>>>>>>>   Transaction
 // ///
@@ -98,8 +107,4 @@ final authRepository = Provider<AuthRepository>(
 // final walletRepository = Provider<WalletRepository>(
 //     (ref) => WalletManager(ref.watch(_walletService)));
 
-/// ------------------------------>>>>>>>>>>   User Storage
-///
-// final userStorageService = Provider<UserStorageService>((ref) {
-//   return UserStorageService(storageService: ref.watch(hiveStorageService));
-// });
+
