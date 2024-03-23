@@ -1,3 +1,4 @@
+import 'package:beta_sms_mobile/core/storage/share_pref.dart';
 import 'package:beta_sms_mobile/data/models/requests/login_req.dart';
 import 'package:beta_sms_mobile/presentation/features/auth/create_account_screen.dart';
 import 'package:beta_sms_mobile/presentation/features/auth/vm/login_vm.dart';
@@ -35,17 +36,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _emailAddressController.text =
+        userEmail.value.isEmpty ? SharedPrefManager.email : userEmail.value;
+  }
+
+  @override
   Widget build(BuildContext context) {
     FocusScopeNode currentFocus = FocusScope.of(context);
     final isLoginLoading = ref.watch(loginProvider);
 
     ref.listen(loginProvider, (_, next) {
       if (next is AsyncData<String>) {
+        SharedPrefManager.email = _emailAddressController.text;
         context.push(Dashboard.path);
       }
       if (next is AsyncError) {
-        showErrorSnackBar(context, next.error.toString());
-        _passwordController.text = "";
+        SnackBarDialog.showErrorFlushBarMessage(next.error.toString(), context);
+        _passwordController.clear();
       }
     });
     return Scaffold(

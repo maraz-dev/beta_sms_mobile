@@ -10,6 +10,9 @@ class TextInput extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextEditingController controller;
   final String hint;
+  final bool readOnly;
+  final Function()? onPressed;
+  final int? maxLength;
   const TextInput({
     super.key,
     required this.fieldName,
@@ -17,6 +20,9 @@ class TextInput extends StatelessWidget {
     required this.hint,
     required this.inputType,
     required this.validator,
+    this.maxLength,
+    this.readOnly = false,
+    this.onPressed,
   });
 
   @override
@@ -34,8 +40,11 @@ class TextInput extends StatelessWidget {
         TextFormField(
           controller: controller,
           keyboardType: inputType,
+          maxLength: maxLength,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: validator,
+          readOnly: readOnly,
+          onTap: onPressed,
           decoration: InputDecoration(
               hintText: hint,
               hintStyle: Theme.of(context)

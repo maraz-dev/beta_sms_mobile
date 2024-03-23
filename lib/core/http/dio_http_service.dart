@@ -92,12 +92,11 @@ class NetworkService implements HttpService {
       switch (method) {
         case RequestMethod.post:
           await checkInternet();
-          response = await _dio.post(
-            path,
-            queryParameters: queryParams,
-            data: data,
-            cancelToken: cancelToken,
-          );
+          response = await _dio.post(path,
+              queryParameters: queryParams,
+              data: data,
+              cancelToken: cancelToken,
+              options: options);
           break;
         case RequestMethod.get:
           response = await _dio.get(

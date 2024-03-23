@@ -21,7 +21,7 @@ class ApiEndpoints {
   }
 
   static const String devURL =
-      "https://ddbm7ddptd.execute-api.eu-west-1.amazonaws.com/dev/api/v1";
+      "https://c2uj9fd0p3.execute-api.us-east-2.amazonaws.com/dev/api/v1";
   static const String productionURL = "";
 
   static final baseUrl =
@@ -45,6 +45,8 @@ class ApiEndpoints {
   /// More
   String get getAccountDetails => "/UserProfile/GetAccountDetails";
   String get changePassword => "/UserProfile/ChangePassword";
+  String get getUserContactGroup => "/ContactGroup/GetUserContactGroup";
+  String get getContactByContactGroup => "/ContactGroup/GetUserContactGroup";
 
   ///Refresh Token
   String get refresh => "/$version/auth/refresh";
