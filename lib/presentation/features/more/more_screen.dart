@@ -7,7 +7,6 @@ import 'package:beta_sms_mobile/presentation/features/more/settings_tab.dart';
 import 'package:beta_sms_mobile/presentation/theme/colors.dart';
 import 'package:beta_sms_mobile/presentation/utils/filter_icon.dart';
 import 'package:beta_sms_mobile/presentation/utils/search_box.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';

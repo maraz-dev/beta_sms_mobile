@@ -9,6 +9,8 @@ import 'package:beta_sms_mobile/core/utils/app_url.dart';
 import 'package:beta_sms_mobile/data/local/user_data_storage.dart';
 import 'package:beta_sms_mobile/data/remote/auth/auth_impl.dart';
 import 'package:beta_sms_mobile/data/remote/auth/auth_service.dart';
+import 'package:beta_sms_mobile/data/remote/home/home_impl.dart';
+import 'package:beta_sms_mobile/data/remote/home/home_service.dart';
 import 'package:beta_sms_mobile/data/remote/more/more_impl.dart';
 import 'package:beta_sms_mobile/data/remote/more/more_service.dart';
 import 'package:get_it/get_it.dart';
@@ -71,14 +73,27 @@ final authRepository = Provider<AuthRepository>(
   },
 );
 
+/// Dashboard Service
+final _dashboardService = Provider<HomeService>((ref) {
+  var network = ref.watch(_networkService);
+  return HomeService(
+    networkService: network,
+  );
+});
+
+final homeRepository = Provider<HomeRepository>(
+  (ref) {
+    final dashboardService = ref.watch(_dashboardService);
+    return HomeImpl(dashboardService);
+  },
+);
+
 /// More Service
 
 final _moreService = Provider<MoreService>((ref) {
   var network = ref.watch(_networkService);
-  var secureStorage = ref.watch(secureStorageService);
   return MoreService(
     networkService: network,
-    storage: secureStorage,
   );
 });
 

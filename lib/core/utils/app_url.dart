@@ -39,6 +39,9 @@ class ApiEndpoints {
   String get sendOtp => "/Onboarding/SendOtp";
   String get validateOtp => "/Onboarding/ValidateOtp";
 
+  /// Dashboard
+  String get getBalanceUnit => "/Transaction/BalanceUnit";
+
   /// SMS
   String get sendQuickSMS => "/SmsManagement/SendMessage";
 
@@ -46,7 +49,7 @@ class ApiEndpoints {
   String get getAccountDetails => "/UserProfile/GetAccountDetails";
   String get changePassword => "/UserProfile/ChangePassword";
   String get getUserContactGroup => "/ContactGroup/GetUserContactGroup";
-  String get getContactByContactGroup => "/ContactGroup/GetUserContactGroup";
+  String get getContactByContactGroup => "/Contact/GetByContactGroup";
 
   ///Refresh Token
   String get refresh => "/$version/auth/refresh";

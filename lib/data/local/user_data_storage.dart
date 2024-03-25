@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:beta_sms_mobile/core/storage/hive-storage/hive_storage.dart';
 import 'package:beta_sms_mobile/core/storage/hive-storage/hive_storage_service.dart';
 import 'package:beta_sms_mobile/data/models/responses/user_profile.dart';
@@ -19,7 +21,7 @@ class UserStorageService {
         return UserResponse();
       }
     } catch (e) {
-      print("This is Storage Error " + e.toString());
+      print("This is Storage Error $e");
       throw e.toString();
     }
   }

@@ -33,7 +33,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final user = ref.watch(localUserProvider);
-    final partnerWallet = user.value?.partnerWallet;
+
     return Scaffold(
       body: Column(
         children: [
@@ -96,8 +96,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ],
                   ),
                   SizedBox(height: 50.h),
-                  WalletView(
-                      balance: partnerWallet?.balance ?? 0.00, units: 200.3)
+                  const WalletView()
                 ],
               ),
             ),

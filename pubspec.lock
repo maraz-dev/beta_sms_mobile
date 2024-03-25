@@ -158,6 +158,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  flutter_platform_dropdown:
+    dependency: "direct main"
+    description:
+      name: flutter_platform_dropdown
+      sha256: "283e916966f3b73c3cc16d92e8f2f6e38aaa8cff88695ac3f3c3a2bb30223dba"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
   flutter_riverpod:
     dependency: transitive
     description:

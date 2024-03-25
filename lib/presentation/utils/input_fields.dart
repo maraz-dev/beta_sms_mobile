@@ -273,6 +273,7 @@ class ListInput extends StatelessWidget {
           controller: controller,
           readOnly: true,
           keyboardType: inputType,
+          onTap: onPressed,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: validator,
           decoration: InputDecoration(

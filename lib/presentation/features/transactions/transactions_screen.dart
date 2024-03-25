@@ -46,7 +46,7 @@ class _TransactionsScreenState extends State<TransactionsScreen>
                   ),
                   const Line(),
                   SizedBox(height: 10.h),
-                  const WalletView(balance: 15640.87, units: 200.3),
+                  const WalletView(),
                   const Line(),
                   SizedBox(
                     height: 40.h,
