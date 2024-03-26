@@ -9,8 +9,8 @@ import 'package:beta_sms_mobile/core/utils/app_url.dart';
 import 'package:beta_sms_mobile/data/local/user_data_storage.dart';
 import 'package:beta_sms_mobile/data/remote/auth/auth_impl.dart';
 import 'package:beta_sms_mobile/data/remote/auth/auth_service.dart';
-import 'package:beta_sms_mobile/data/remote/home/home_impl.dart';
-import 'package:beta_sms_mobile/data/remote/home/home_service.dart';
+import 'package:beta_sms_mobile/data/remote/transactions/transactions_impl.dart';
+import 'package:beta_sms_mobile/data/remote/transactions/transactions_service.dart';
 import 'package:beta_sms_mobile/data/remote/more/more_impl.dart';
 import 'package:beta_sms_mobile/data/remote/more/more_service.dart';
 import 'package:get_it/get_it.dart';
@@ -74,17 +74,17 @@ final authRepository = Provider<AuthRepository>(
 );
 
 /// Dashboard Service
-final _dashboardService = Provider<HomeService>((ref) {
+final _transactionsService = Provider<TransactionsService>((ref) {
   var network = ref.watch(_networkService);
-  return HomeService(
+  return TransactionsService(
     networkService: network,
   );
 });
 
-final homeRepository = Provider<HomeRepository>(
+final transactionsRepository = Provider<TransactionsRepository>(
   (ref) {
-    final dashboardService = ref.watch(_dashboardService);
-    return HomeImpl(dashboardService);
+    final transactionsService = ref.watch(_transactionsService);
+    return TransactionsImpl(transactionsService);
   },
 );
 

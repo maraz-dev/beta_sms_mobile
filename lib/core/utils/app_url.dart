@@ -39,8 +39,12 @@ class ApiEndpoints {
   String get sendOtp => "/Onboarding/SendOtp";
   String get validateOtp => "/Onboarding/ValidateOtp";
 
-  /// Dashboard
+  /// Transaction
   String get getBalanceUnit => "/Transaction/BalanceUnit";
+  String get topUp => "/Transaction/Charge";
+  String get submitCardPin => "/Transaction/SubmitPin";
+  String get submitTransationOTP => "/Transaction/SubmitOtp";
+  String get getTransaction => "/Transaction/GetTransaction";
 
   /// SMS
   String get sendQuickSMS => "/SmsManagement/SendMessage";

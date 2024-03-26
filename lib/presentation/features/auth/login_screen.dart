@@ -121,7 +121,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     validator: validatePassword,
                     fieldName: 'Password',
                     hint: '********',
-                    inputType: TextInputType.emailAddress,
+                    inputType: TextInputType.visiblePassword,
                   ),
                   SizedBox(
                     height: 10.h,

@@ -1,11 +1,9 @@
 import 'package:beta_sms_mobile/presentation/features/home/subviews/top_up_bottomsheet.dart';
-import 'package:beta_sms_mobile/presentation/features/home/vm/home_providers.dart';
+import 'package:beta_sms_mobile/presentation/features/transactions/vm/transaction_providers.dart';
 import 'package:beta_sms_mobile/presentation/theme/colors.dart';
 import 'package:beta_sms_mobile/presentation/utils/app_bottomsheet.dart';
 import 'package:beta_sms_mobile/presentation/utils/buttons.dart';
 import 'package:beta_sms_mobile/presentation/utils/extensions.dart';
-import 'package:beta_sms_mobile/presentation/utils/use_bank_transfer.dart';
-import 'package:beta_sms_mobile/presentation/utils/use_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -40,8 +38,8 @@ class _WalletViewState extends ConsumerState<WalletView> {
             ),
             Text(
               balance.isLoading
-                  ? 'N ---'
-                  : 'N${balance.value?.balance?.amountInt() ?? 0.00}',
+                  ? '₦ ---'
+                  : '₦${balance.value?.balance?.amountInt() ?? 0.00}',
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
                   color: AppColors.kWhite, fontWeight: FontWeight.w500),
             ),
@@ -51,7 +49,7 @@ class _WalletViewState extends ConsumerState<WalletView> {
             Text(
               balance.isLoading
                   ? '--- UNITS'
-                  : '${balance.value?.unit?.toString() ?? 0.00} UNITS',
+                  : '${balance.value?.unit?.amountInt() ?? 0.00} UNITS',
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: AppColors.kLightGrey,
                   fontSize: 10.sp,

@@ -66,6 +66,7 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
             ),
             SizedBox(height: 20.h),
             CardInput(
+              readOnly: true,
               fieldName: 'Full Name',
               controller: _fullName,
               hint: '',
@@ -74,6 +75,7 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
             ),
             SizedBox(height: 15.h),
             CardInput(
+              readOnly: true,
               fieldName: 'Email Address',
               controller: _emailAddress,
               hint: '',
@@ -82,6 +84,7 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
             ),
             SizedBox(height: 15.h),
             CardInput(
+              readOnly: true,
               fieldName: 'Phone Number',
               controller: _phoneNo,
               hint: '',
