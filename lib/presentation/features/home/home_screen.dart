@@ -2,11 +2,13 @@ import 'package:beta_sms_mobile/data/local/user_data_impl.dart';
 import 'package:beta_sms_mobile/presentation/features/home/subviews/home_image.dart';
 import 'package:beta_sms_mobile/presentation/features/home/subviews/more_solutions_widget.dart';
 import 'package:beta_sms_mobile/presentation/features/home/subviews/wallet_view.dart';
+import 'package:beta_sms_mobile/presentation/features/sms/bulk_send_sms.dart';
 import 'package:beta_sms_mobile/presentation/theme/colors.dart';
 import 'package:beta_sms_mobile/presentation/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -122,7 +124,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     subtitle:
                         'Create, personalize, and launch SMS campaigns from a simple step by step editor.',
                     buttonText: 'Send Bulk SMS',
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pushNamed(SendBulkSMSScreen.path);
+                    },
                   ),
                   SizedBox(height: 20.h),
                   MoreSolutionsWidget(
