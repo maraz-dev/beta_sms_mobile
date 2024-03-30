@@ -59,6 +59,7 @@ class _WalletViewState extends ConsumerState<WalletView> {
         ),
         const Spacer(),
         Expanded(
+            flex: 2,
             child: MainButton(
                 text: 'TOP UP',
                 onPressed: () {
