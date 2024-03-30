@@ -131,6 +131,7 @@ class CardInput extends StatelessWidget {
   final TextInputType inputType;
   final String? Function(String?)? validator;
   final Function(String)? onChanged;
+  final Function()? onPressed;
   final TextEditingController controller;
   final String hint;
   final int? maxLength;
@@ -138,6 +139,8 @@ class CardInput extends StatelessWidget {
   final bool isCVV;
   final bool? isDate;
   final bool? readOnly;
+  final bool? isDateOrTime;
+  final String? dateOrTimeImage;
   const CardInput({
     super.key,
     required this.fieldName,
@@ -151,6 +154,9 @@ class CardInput extends StatelessWidget {
     this.isDate,
     this.readOnly,
     this.maxLines = 1,
+    this.onPressed,
+    this.isDateOrTime,
+    this.dateOrTimeImage,
   });
 
   @override
@@ -170,6 +176,7 @@ class CardInput extends StatelessWidget {
           maxLength: maxLength,
           maxLines: maxLines,
           onChanged: onChanged,
+          onTap: onPressed,
           decoration: InputDecoration(
               fillColor: Colors.transparent,
               counterText: '',
@@ -180,7 +187,14 @@ class CardInput extends StatelessWidget {
                       height: 18.h,
                       fit: BoxFit.none,
                     )
-                  : null,
+                  : isDateOrTime ?? false
+                      ? SvgPicture.asset(
+                          dateOrTimeImage ?? "",
+                          width: 18.w,
+                          height: 18.h,
+                          fit: BoxFit.none,
+                        )
+                      : null,
               label: Text(
                 fieldName,
                 style: Theme.of(context).textTheme.bodyLarge,
@@ -270,15 +284,17 @@ class ListInput extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
   final Function()? onPressed;
+  final Key? textKey;
   const ListInput({
-    super.key,
+    Key? key,
     required this.fieldName,
     required this.controller,
     required this.hint,
     required this.inputType,
     required this.validator,
     this.onPressed,
-  });
+    this.textKey,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -289,7 +305,7 @@ class ListInput extends StatelessWidget {
           height: 10.h,
         ),
         TextFormField(
-          key: key,
+          key: textKey,
           controller: controller,
           readOnly: true,
           keyboardType: inputType,
@@ -297,14 +313,11 @@ class ListInput extends StatelessWidget {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: validator,
           decoration: InputDecoration(
-              suffixIcon: GestureDetector(
-                onTap: onPressed,
-                child: SvgPicture.asset(
-                  AppImages.arrowDownIcon,
-                  width: 18.w,
-                  height: 18.h,
-                  fit: BoxFit.none,
-                ),
+              suffixIcon: SvgPicture.asset(
+                AppImages.arrowDownIcon,
+                width: 18.w,
+                height: 18.h,
+                fit: BoxFit.none,
               ),
               label: Text(
                 fieldName,

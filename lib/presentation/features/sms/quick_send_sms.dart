@@ -1,5 +1,7 @@
 import 'package:beta_sms_mobile/presentation/features/sms/subviews/campaign_card_text.dart';
+import 'package:beta_sms_mobile/presentation/features/sms/subviews/send_later_sheet.dart';
 import 'package:beta_sms_mobile/presentation/theme/colors.dart';
+import 'package:beta_sms_mobile/presentation/utils/app_bottomsheet.dart';
 import 'package:beta_sms_mobile/presentation/utils/app_images.dart';
 import 'package:beta_sms_mobile/presentation/utils/buttons.dart';
 import 'package:beta_sms_mobile/presentation/utils/input_fields.dart';
@@ -109,7 +111,7 @@ class _QuickSendSmsBodyState extends State<QuickSendSmsBody> {
                     controller: _recipients,
                     maxLines: 5,
                     hint: '',
-                    inputType: TextInputType.name,
+                    inputType: TextInputType.multiline,
                     validator: validateGeneric,
                   ),
                   SizedBox(height: 15.h),
@@ -126,7 +128,7 @@ class _QuickSendSmsBodyState extends State<QuickSendSmsBody> {
                     controller: _message,
                     maxLines: 5,
                     hint: '',
-                    inputType: TextInputType.name,
+                    inputType: TextInputType.multiline,
                     validator: validateGeneric,
                   ),
                   SizedBox(height: 15.h),
@@ -156,7 +158,10 @@ class _QuickSendSmsBodyState extends State<QuickSendSmsBody> {
                     textColor: AppColors.kPrimaryColor,
                     color: AppColors.kBorderColor,
                     text: 'Send Later',
-                    onPressed: () {},
+                    onPressed: () {
+                      AppBottomSheet.showBottomSheet(context,
+                          widget: const SendLaterSheet());
+                    },
                   ),
                 ),
                 SizedBox(width: 10.w),

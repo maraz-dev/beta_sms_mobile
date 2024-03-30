@@ -161,9 +161,9 @@ class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen> {
                     onPressed: () async {
                       final value = await showPlatformDatePicker(
                         context: context,
-                        initialDate: DateTime.now(),
+                        initialDate: _dob,
                         firstDate: DateTime(1900),
-                        lastDate: DateTime(3100),
+                        lastDate: _dob,
                       );
                       if (value == null) return;
                       var formatter = DateFormat('yyyy-MM-dd');

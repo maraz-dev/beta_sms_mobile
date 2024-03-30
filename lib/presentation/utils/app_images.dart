@@ -37,4 +37,6 @@ class AppImages {
   static const arrowDownIcon = '$path/arrowDown.svg';
   static const editIcon = '$path/edit.svg';
   static const deleteIcon = '$path/delete.svg';
+  static const calenderIcon = '$path/calender.svg';
+  static const clockIcon = '$path/clock.svg';
 }

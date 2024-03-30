@@ -34,6 +34,7 @@ class AuthService {
       final tokenRes = Token.fromJson(res["token"]);
       _storage.saveData('token', tokenRes.token ?? '');
       SharedPrefManager.userId = res['id'];
+      SharedPrefManager.accountStatus = res['status'];
       _hivestorage.set(StorageKey.userProfile.name, res);
 
       return response.data['message'];

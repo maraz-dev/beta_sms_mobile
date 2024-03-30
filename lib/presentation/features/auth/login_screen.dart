@@ -1,7 +1,9 @@
 import 'package:beta_sms_mobile/core/storage/share_pref.dart';
 import 'package:beta_sms_mobile/data/models/requests/login_req.dart';
 import 'package:beta_sms_mobile/presentation/features/auth/create_account_screen.dart';
+import 'package:beta_sms_mobile/presentation/features/auth/otp_screen.dart';
 import 'package:beta_sms_mobile/presentation/features/auth/vm/login_vm.dart';
+import 'package:beta_sms_mobile/presentation/features/auth/vm/otp_vm.dart';
 import 'package:beta_sms_mobile/presentation/features/dashboard/dashboard.dart';
 import 'package:beta_sms_mobile/presentation/theme/colors.dart';
 import 'package:beta_sms_mobile/presentation/utils/app_images.dart';
@@ -49,8 +51,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     ref.listen(loginProvider, (_, next) {
       if (next is AsyncData<String>) {
-        SharedPrefManager.email = _emailAddressController.text;
-        context.push(Dashboard.path);
+        if (SharedPrefManager.accountStatus != "Active") {
+          userEmail.value = _emailAddressController.text;
+          context.pushNamed(OTPVerificationScreen.path);
+          ref
+              .watch(sendOtpProvider.notifier)
+              .sendOTPmethod(_emailAddressController.text);
+        } else {
+          SharedPrefManager.email = _emailAddressController.text;
+          context.push(Dashboard.path);
+        }
       }
       if (next is AsyncError) {
         SnackBarDialog.showErrorFlushBarMessage(next.error.toString(), context);

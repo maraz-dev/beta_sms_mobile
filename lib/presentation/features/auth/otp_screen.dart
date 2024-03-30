@@ -41,7 +41,7 @@ class _OTPVerificationScreenState extends ConsumerState<OTPVerificationScreen> {
 
     ref.listen(validateOtpProvider, (_, next) {
       if (next is AsyncData<String>) {
-        context.pushNamed(LoginScreen.path);
+        context.pushReplacementNamed(LoginScreen.path);
         SnackBarDialog.showSuccessFlushBarMessage(
             'Account Successfully Created', context);
       }
