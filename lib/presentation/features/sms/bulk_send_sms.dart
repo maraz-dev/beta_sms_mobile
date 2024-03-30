@@ -1,26 +1,29 @@
-import 'package:beta_sms_mobile/presentation/features/sms/details_analytics_tab.dart';
-import 'package:beta_sms_mobile/presentation/features/sms/details_messages_tab.dart';
+import 'package:beta_sms_mobile/presentation/features/sms/bulk_sms_choose_tab.dart';
+import 'package:beta_sms_mobile/presentation/features/sms/bulk_sms_paste_tab.dart';
+import 'package:beta_sms_mobile/presentation/features/sms/bulk_sms_upload_tab.dart';
 import 'package:beta_sms_mobile/presentation/theme/colors.dart';
+import 'package:beta_sms_mobile/presentation/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-class SMSDetailsScreen extends StatefulWidget {
-  static String path = 'smsDetailsScreen';
-  const SMSDetailsScreen({super.key});
+class SendBulkSMSScreen extends StatefulWidget {
+  static String path = '/sendBulkSms';
+  const SendBulkSMSScreen({super.key});
 
   @override
-  State<SMSDetailsScreen> createState() => _SMSScreenState();
+  State<SendBulkSMSScreen> createState() => _SendBulkSMSScreenState();
 }
 
-class _SMSScreenState extends State<SMSDetailsScreen>
+class _SendBulkSMSScreenState extends State<SendBulkSMSScreen>
     with SingleTickerProviderStateMixin {
-  late TabController _detailsTabController;
+  late TabController _sendBulkSMSTabController;
 
   @override
   void initState() {
     super.initState();
-    _detailsTabController = TabController(length: 2, vsync: this);
+    _sendBulkSMSTabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -30,7 +33,7 @@ class _SMSScreenState extends State<SMSDetailsScreen>
         children: [
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.only(top: 20, left: 10, right: 10),
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
             decoration: const BoxDecoration(
               color: AppColors.kDarkBlue,
             ),
@@ -42,31 +45,28 @@ class _SMSScreenState extends State<SMSDetailsScreen>
                   SizedBox(height: 20.h),
                   Row(
                     children: [
-                      IconButton(
-                        onPressed: () {
-                          context.pop();
-                        },
-                        icon: const Icon(
-                          Icons.arrow_back_ios,
-                          color: AppColors.kBorderColor,
-                        ),
-                      ),
+                      GestureDetector(
+                          onTap: () => context.pop(),
+                          child: SvgPicture.asset(AppImages.closeIcon)),
+                      SizedBox(width: 20.w),
                       Text(
-                        'SMS Details',
+                        'Send Bulk SMS',
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             color: AppColors.kWhite,
                             fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
-                  SizedBox(height: 10.h),
+                  SizedBox(height: 30.h),
                   SizedBox(
                     height: 40.h,
                     child: TabBar(
-                      controller: _detailsTabController,
+                      controller: _sendBulkSMSTabController,
+                      isScrollable: true,
+                      tabAlignment: TabAlignment.start,
+                      dividerHeight: 0,
                       labelColor: AppColors.kYellow,
                       unselectedLabelColor: AppColors.kUnselectedTabText,
-                      dividerHeight: 0,
                       labelStyle: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -78,57 +78,30 @@ class _SMSScreenState extends State<SMSDetailsScreen>
                       indicatorColor: AppColors.kYellow,
                       indicatorSize: TabBarIndicatorSize.label,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 20.w, vertical: 0.h),
+                          EdgeInsets.symmetric(horizontal: 0.h, vertical: 0.h),
                       tabs: const [
-                        Tab(text: 'Message'),
-                        Tab(text: 'Analytics'),
+                        Tab(text: 'Paste'),
+                        Tab(text: 'Upload'),
+                        Tab(text: 'Choose from Contact'),
                       ],
                     ),
-                  ),
-                  SizedBox(height: 0.h),
+                  )
                 ],
               ),
             ),
           ),
           Expanded(
             child: TabBarView(
-              controller: _detailsTabController,
+              controller: _sendBulkSMSTabController,
               children: const [
-                DetailsMessageTab(),
-                DetailsAnalyticsTab(),
+                BulkSMSPasteTab(),
+                BulkSMSUploadTab(),
+                BulkSMSChooseTab(),
               ],
             ),
           )
         ],
       ),
     );
-  }
-}
-
-class GradientBorderPainter extends CustomPainter {
-  final Gradient gradient;
-  final double strokeWidth;
-
-  GradientBorderPainter({
-    required this.gradient,
-    required this.strokeWidth,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final Rect rect = Offset.zero & size;
-    final Paint paint = Paint()
-      ..shader = gradient.createShader(rect)
-      ..strokeWidth = strokeWidth
-      ..style = PaintingStyle.stroke;
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(rect, Radius.circular(100.r)),
-      paint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
   }
 }

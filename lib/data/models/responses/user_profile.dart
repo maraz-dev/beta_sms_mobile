@@ -13,6 +13,7 @@ class UserResponse {
   String? id;
   String? firstName;
   String? lastName;
+  String? fullName;
   String? userName;
   String? email;
   String? phoneNumber;
@@ -20,7 +21,7 @@ class UserResponse {
   String? roleCode;
   String? referalCode;
   String? userReferalCode;
-  String? country;
+  dynamic country;
   bool? isPinSet;
   String? bankName;
   bool? isKycCompleted;
@@ -44,6 +45,7 @@ class UserResponse {
     this.id,
     this.firstName,
     this.lastName,
+    this.fullName,
     this.userName,
     this.email,
     this.phoneNumber,
@@ -76,6 +78,7 @@ class UserResponse {
         id: json["id"],
         firstName: json["firstName"],
         lastName: json["lastName"],
+        fullName: json["fullName"],
         userName: json["userName"],
         email: json["email"],
         phoneNumber: json["phoneNumber"],
@@ -110,6 +113,7 @@ class UserResponse {
         "id": id,
         "firstName": firstName,
         "lastName": lastName,
+        "fullName": fullName,
         "userName": userName,
         "email": email,
         "phoneNumber": phoneNumber,

@@ -71,7 +71,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             height: 5.h,
                           ),
                           Text(
-                            user.value?.firstName ?? "",
+                            user.value?.fullName?.split(" ").first ?? "",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge!

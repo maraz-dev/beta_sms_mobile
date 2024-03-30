@@ -3,6 +3,8 @@ import 'package:beta_sms_mobile/presentation/features/auth/login_screen.dart';
 import 'package:beta_sms_mobile/presentation/features/auth/otp_screen.dart';
 import 'package:beta_sms_mobile/presentation/features/dashboard/dashboard.dart';
 import 'package:beta_sms_mobile/presentation/features/onboarding/onboarding_screen.dart';
+import 'package:beta_sms_mobile/presentation/features/sms/bulk_send_sms.dart';
+import 'package:beta_sms_mobile/presentation/features/sms/quick_send_sms.dart';
 import 'package:beta_sms_mobile/presentation/features/sms/sms_details_screen.dart';
 import 'package:beta_sms_mobile/presentation/features/sms/sms_screen.dart';
 import 'package:flutter/material.dart';
@@ -61,5 +63,15 @@ final routeProvider = Provider<GoRouter>((ref) {
                 builder: (context, state) => const SMSDetailsScreen(),
               ),
             ]),
+        GoRoute(
+          path: SendBulkSMSScreen.path,
+          name: SendBulkSMSScreen.path,
+          builder: (context, state) => const SendBulkSMSScreen(),
+        ),
+        GoRoute(
+          path: QuickSendSMSScreen.path,
+          name: QuickSendSMSScreen.path,
+          builder: (context, state) => const QuickSendSMSScreen(),
+        ),
       ]);
 });

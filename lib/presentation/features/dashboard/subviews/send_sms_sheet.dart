@@ -1,7 +1,10 @@
 import 'package:beta_sms_mobile/presentation/features/dashboard/subviews/send_sms_card.dart';
+import 'package:beta_sms_mobile/presentation/features/sms/bulk_send_sms.dart';
+import 'package:beta_sms_mobile/presentation/features/sms/quick_send_sms.dart';
 import 'package:beta_sms_mobile/presentation/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SendSMSSheet extends StatelessWidget {
   const SendSMSSheet({
@@ -24,14 +27,22 @@ class SendSMSSheet extends StatelessWidget {
         SizedBox(height: 10.h),
         const Text('Select your preferred service'),
         SizedBox(height: 30.h),
-        const SendSMSCard(
+        SendSMSCard(
           image: AppImages.clipboardIcon,
           text: 'Send Bulk SMS',
+          onPressed: () {
+            context.pop();
+            context.pushNamed(SendBulkSMSScreen.path);
+          },
         ),
         SizedBox(height: 10.h),
-        const SendSMSCard(
+        SendSMSCard(
           image: AppImages.quickSendIcon,
           text: 'Quick Send',
+          onPressed: () {
+            context.pop();
+            context.pushNamed(QuickSendSMSScreen.path);
+          },
         ),
         SizedBox(height: 50.h),
       ],

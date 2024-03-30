@@ -2,7 +2,6 @@ import 'package:beta_sms_mobile/presentation/features/home/subviews/wallet_view.
 import 'package:beta_sms_mobile/presentation/features/transactions/subviews/transaction_card.dart';
 import 'package:beta_sms_mobile/presentation/features/transactions/vm/transaction_providers.dart';
 import 'package:beta_sms_mobile/presentation/theme/colors.dart';
-import 'package:beta_sms_mobile/presentation/utils/extensions.dart';
 import 'package:beta_sms_mobile/presentation/utils/line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -57,7 +57,7 @@ class TransactionCard extends StatelessWidget {
         ),
         const Spacer(),
         Text(
-          '₦${amount.amountInt()}',
+          'N${amount.amountInt()}',
           style: Theme.of(context)
               .textTheme
               .bodyLarge!

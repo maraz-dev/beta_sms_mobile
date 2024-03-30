@@ -1,5 +1,4 @@
 import 'package:beta_sms_mobile/presentation/features/more/subviews/contact_card.dart';
-import 'package:beta_sms_mobile/presentation/features/more/vm/more_providers.dart';
 import 'package:beta_sms_mobile/presentation/theme/colors.dart';
 import 'package:beta_sms_mobile/presentation/utils/input_fields.dart';
 import 'package:beta_sms_mobile/presentation/utils/line.dart';
@@ -29,7 +28,7 @@ class _ContactsTabState extends ConsumerState<ContactsTab> {
   //final GlobalKey<State> _keyA = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    final contactList = ref.watch(getContactGroupsByUserProvider);
+    //final contactList = ref.watch(getContactGroupsByUserProvider);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(

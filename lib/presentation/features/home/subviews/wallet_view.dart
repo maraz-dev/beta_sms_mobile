@@ -38,8 +38,8 @@ class _WalletViewState extends ConsumerState<WalletView> {
             ),
             Text(
               balance.isLoading
-                  ? '₦ ---'
-                  : '₦${balance.value?.balance?.amountInt() ?? 0.00}',
+                  ? 'NGN ---'
+                  : 'NGN ${balance.value?.balance?.amountInt() ?? 0.00}',
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
                   color: AppColors.kWhite, fontWeight: FontWeight.w500),
             ),

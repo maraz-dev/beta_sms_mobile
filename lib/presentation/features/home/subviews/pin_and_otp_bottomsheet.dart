@@ -1,6 +1,5 @@
 import 'package:beta_sms_mobile/presentation/features/transactions/vm/submit_card_pin_vm.dart';
 import 'package:beta_sms_mobile/presentation/features/transactions/vm/submit_otp_vm.dart';
-import 'package:beta_sms_mobile/presentation/features/transactions/vm/transaction_providers.dart';
 import 'package:beta_sms_mobile/presentation/theme/colors.dart';
 import 'package:beta_sms_mobile/presentation/utils/app_images.dart';
 import 'package:beta_sms_mobile/presentation/utils/buttons.dart';

@@ -33,7 +33,7 @@ class _SettingsTabState extends ConsumerState<SettingsTab> {
   @override
   void initState() {
     super.initState();
-    _fullName.text = "${widget.user.firstName} ${widget.user.lastName}";
+    _fullName.text = widget.user.fullName ?? "";
     _emailAddress.text = widget.user.email ?? "";
     _phoneNo.text = widget.user.phoneNumber ?? "";
   }

@@ -134,6 +134,7 @@ class CardInput extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
   final int? maxLength;
+  final int? maxLines;
   final bool isCVV;
   final bool? isDate;
   final bool? readOnly;
@@ -149,6 +150,7 @@ class CardInput extends StatelessWidget {
     this.onChanged,
     this.isDate,
     this.readOnly,
+    this.maxLines = 1,
   });
 
   @override
@@ -166,8 +168,10 @@ class CardInput extends StatelessWidget {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: validator,
           maxLength: maxLength,
+          maxLines: maxLines,
           onChanged: onChanged,
           decoration: InputDecoration(
+              fillColor: Colors.transparent,
               counterText: '',
               suffixIcon: isCVV
                   ? SvgPicture.asset(
