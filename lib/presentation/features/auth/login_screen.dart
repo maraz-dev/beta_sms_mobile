@@ -59,7 +59,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               .sendOTPmethod(_emailAddressController.text);
         } else {
           SharedPrefManager.email = _emailAddressController.text;
-          context.push(Dashboard.path);
+          context.pushReplacementNamed(Dashboard.path);
         }
       }
       if (next is AsyncError) {

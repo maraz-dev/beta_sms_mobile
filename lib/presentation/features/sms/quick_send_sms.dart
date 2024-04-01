@@ -88,91 +88,95 @@ class _QuickSendSmsBodyState extends State<QuickSendSmsBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                  color: AppColors.kWhite,
-                  border: Border.all(color: AppColors.kBorderColor)),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding:
+            const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                    color: AppColors.kWhite,
+                    border: Border.all(color: AppColors.kBorderColor)),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Automate notifications and provide support through our omni-channel SMS API',
+                    ),
+                    SizedBox(height: 10.h),
+                    CardInput(
+                      fieldName: "Paste Recipient",
+                      controller: _recipients,
+                      maxLines: 5,
+                      hint: '',
+                      inputType: TextInputType.multiline,
+                      validator: validateGeneric,
+                    ),
+                    SizedBox(height: 15.h),
+                    CardInput(
+                      fieldName: "Sender's Name",
+                      controller: _senderName,
+                      hint: '',
+                      inputType: TextInputType.name,
+                      validator: validateGeneric,
+                    ),
+                    SizedBox(height: 15.h),
+                    CardInput(
+                      fieldName: "Message",
+                      controller: _message,
+                      maxLines: 5,
+                      hint: '',
+                      inputType: TextInputType.multiline,
+                      validator: validateGeneric,
+                    ),
+                    SizedBox(height: 15.h),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CampaignCardText(heading: 'Characters', text: '56'),
+                        CampaignCardText(heading: 'Messages', text: '1 Page'),
+                        CampaignCardText(
+                            heading: 'Receivers', text: '532 Contacts'),
+                      ],
+                    ),
+                    SizedBox(height: 15.h),
+                    const CampaignCardText(
+                        heading: 'Estimated Costs',
+                        text: 'NGN 21,583 (511 units)'),
+                  ],
+                ),
+              ),
+              SizedBox(height: 15.h),
+              Row(
                 children: [
-                  const Text(
-                    'Automate notifications and provide support through our omni-channel SMS API',
+                  Expanded(
+                    flex: 2,
+                    child: MainButton(
+                      isPrimary: false,
+                      textColor: AppColors.kPrimaryColor,
+                      color: AppColors.kBorderColor,
+                      text: 'Send Later',
+                      onPressed: () {
+                        AppBottomSheet.showBottomSheet(context,
+                            widget: const SendLaterSheet());
+                      },
+                    ),
                   ),
-                  SizedBox(height: 10.h),
-                  CardInput(
-                    fieldName: "Paste Recipient",
-                    controller: _recipients,
-                    maxLines: 5,
-                    hint: '',
-                    inputType: TextInputType.multiline,
-                    validator: validateGeneric,
-                  ),
-                  SizedBox(height: 15.h),
-                  CardInput(
-                    fieldName: "Sender's Name",
-                    controller: _senderName,
-                    hint: '',
-                    inputType: TextInputType.name,
-                    validator: validateGeneric,
-                  ),
-                  SizedBox(height: 15.h),
-                  CardInput(
-                    fieldName: "Message",
-                    controller: _message,
-                    maxLines: 5,
-                    hint: '',
-                    inputType: TextInputType.multiline,
-                    validator: validateGeneric,
-                  ),
-                  SizedBox(height: 15.h),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CampaignCardText(heading: 'Characters', text: '56'),
-                      CampaignCardText(heading: 'Messages', text: '1 Page'),
-                      CampaignCardText(
-                          heading: 'Receivers', text: '532 Contacts'),
-                    ],
-                  ),
-                  SizedBox(height: 15.h),
-                  const CampaignCardText(
-                      heading: 'Estimated Costs',
-                      text: 'NGN 21,583 (511 units)'),
+                  SizedBox(width: 10.w),
+                  Expanded(
+                      flex: 3,
+                      child: MainButtonWithIcon(
+                          text: 'Send Now', onPressed: () {}))
                 ],
               ),
-            ),
-            SizedBox(height: 15.h),
-            Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: MainButton(
-                    isPrimary: false,
-                    textColor: AppColors.kPrimaryColor,
-                    color: AppColors.kBorderColor,
-                    text: 'Send Later',
-                    onPressed: () {
-                      AppBottomSheet.showBottomSheet(context,
-                          widget: const SendLaterSheet());
-                    },
-                  ),
-                ),
-                SizedBox(width: 10.w),
-                Expanded(
-                    flex: 3,
-                    child:
-                        MainButtonWithIcon(text: 'Send Now', onPressed: () {}))
-              ],
-            ),
-            SizedBox(height: 30.h),
-          ],
+              SizedBox(height: 30.h),
+            ],
+          ),
         ),
       ),
     );

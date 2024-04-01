@@ -57,7 +57,7 @@ class _MoreScreenState extends ConsumerState<MoreScreen>
                       ),
                       GestureDetector(
                         onTap: () {
-                          context.pushReplacement(LoginScreen.path);
+                          context.replaceNamed(LoginScreen.path);
                         },
                         child: Text(
                           'Log Out',

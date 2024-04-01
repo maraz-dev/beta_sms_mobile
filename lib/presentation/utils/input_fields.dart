@@ -313,6 +313,7 @@ class ListInput extends StatelessWidget {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: validator,
           decoration: InputDecoration(
+              fillColor: Colors.transparent,
               suffixIcon: SvgPicture.asset(
                 AppImages.arrowDownIcon,
                 width: 18.w,
