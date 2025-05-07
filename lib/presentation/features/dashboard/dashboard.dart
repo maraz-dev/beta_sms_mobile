@@ -97,9 +97,8 @@ class _DashboardState extends ConsumerState<Dashboard> {
       floatingActionButton: FloatingActionButton(
         splashColor: Colors.transparent,
         elevation: 0,
-        onPressed: () {
-          AppBottomSheet.showBottomSheet(context, widget: const SendSMSSheet());
-        },
+        onPressed: () => AppBottomSheet.showBottomSheet(context,
+            widget: const SendSMSSheet()),
         foregroundColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         child: Transform.translate(

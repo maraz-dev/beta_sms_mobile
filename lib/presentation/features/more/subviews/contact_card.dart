@@ -5,8 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ContactCard extends StatelessWidget {
+  final String contactName;
+  final String phoneNo;
+  final String listName;
   const ContactCard({
     super.key,
+    required this.contactName,
+    required this.phoneNo,
+    required this.listName,
   });
 
   @override
@@ -20,13 +26,13 @@ class ContactCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Farida Aliyu',
+                  contactName,
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       color: AppColors.kIconColor, fontWeight: FontWeight.w400),
                 ),
                 SizedBox(height: 10.h),
                 Text(
-                  '+234 8135840161',
+                  phoneNo,
                   style: Theme.of(context)
                       .textTheme
                       .bodyLarge!
@@ -43,7 +49,7 @@ class ContactCard extends StatelessWidget {
                 ),
                 SizedBox(height: 10.h),
                 Text(
-                  'Acumen Digital',
+                  listName,
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       fontSize: 10.sp,
                       color: AppColors.kInternationalBlueColor),

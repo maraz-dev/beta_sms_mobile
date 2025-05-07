@@ -38,6 +38,15 @@ String? validateGeneric(String? value) {
   return null;
 }
 
+String? validatePhoneNumber(String? value) {
+  if (value!.isEmpty) {
+    return 'Field cannot be Empty';
+  } else if (value.length < 11) {
+    return 'Phone Number is too short';
+  }
+  return null;
+}
+
 String? validateFirstPassword(String? value) {
   if (value!.isEmpty) {
     return 'Field cannot be Empty';

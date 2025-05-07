@@ -35,8 +35,8 @@ class _SMSScreenState extends State<SMSDetailsScreen>
               color: AppColors.kDarkBlue,
             ),
             child: SafeArea(
+              bottom: false,
               child: Column(
-                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20.h),
@@ -66,6 +66,7 @@ class _SMSScreenState extends State<SMSDetailsScreen>
                       controller: _detailsTabController,
                       labelColor: AppColors.kYellow,
                       unselectedLabelColor: AppColors.kUnselectedTabText,
+                      dividerHeight: 0,
                       labelStyle: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -77,13 +78,14 @@ class _SMSScreenState extends State<SMSDetailsScreen>
                       indicatorColor: AppColors.kYellow,
                       indicatorSize: TabBarIndicatorSize.label,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 0.h, vertical: 0.h),
+                          EdgeInsets.symmetric(horizontal: 20.w, vertical: 0.h),
                       tabs: const [
                         Tab(text: 'Message'),
                         Tab(text: 'Analytics'),
                       ],
                     ),
                   ),
+                  SizedBox(height: 0.h),
                 ],
               ),
             ),

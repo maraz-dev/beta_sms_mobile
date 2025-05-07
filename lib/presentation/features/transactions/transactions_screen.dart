@@ -1,18 +1,21 @@
 import 'package:beta_sms_mobile/presentation/features/home/subviews/wallet_view.dart';
 import 'package:beta_sms_mobile/presentation/features/transactions/subviews/transaction_card.dart';
+import 'package:beta_sms_mobile/presentation/features/transactions/vm/transaction_providers.dart';
 import 'package:beta_sms_mobile/presentation/theme/colors.dart';
 import 'package:beta_sms_mobile/presentation/utils/line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class TransactionsScreen extends StatefulWidget {
+class TransactionsScreen extends ConsumerStatefulWidget {
   const TransactionsScreen({super.key});
 
   @override
-  State<TransactionsScreen> createState() => _TransactionsScreenState();
+  ConsumerState<TransactionsScreen> createState() => _TransactionsScreenState();
 }
 
-class _TransactionsScreenState extends State<TransactionsScreen>
+class _TransactionsScreenState extends ConsumerState<TransactionsScreen>
     with SingleTickerProviderStateMixin {
   late TabController _transactionTabController;
 
@@ -25,6 +28,7 @@ class _TransactionsScreenState extends State<TransactionsScreen>
 
   @override
   Widget build(BuildContext context) {
+    final transactions = ref.watch(getTransactionsProvider);
     return Scaffold(
       body: Column(
         children: [
@@ -46,7 +50,7 @@ class _TransactionsScreenState extends State<TransactionsScreen>
                   ),
                   const Line(),
                   SizedBox(height: 10.h),
-                  const WalletView(balance: 15640.87, units: 200.3),
+                  const WalletView(),
                   const Line(),
                   SizedBox(
                     height: 40.h,
@@ -80,38 +84,161 @@ class _TransactionsScreenState extends State<TransactionsScreen>
           Expanded(
             child: TabBarView(
               controller: _transactionTabController,
-              children: const [
+              children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        TransactionCard(
-                          description: 'Bulk SMS Transaction',
-                          time: '22, JAN. 2021 - 3:34PM',
-                          amount: 30530.87,
-                          isDebit: true,
-                        ),
-                        Line(
-                          color: AppColors.kBorderColor,
-                          thick: 1.2,
-                        ),
-                        TransactionCard(
-                          description: 'Account Top-up',
-                          time: '22, JAN. 2021 - 3:34PM',
-                          amount: 30530.87,
-                          isDebit: false,
-                        )
-                      ],
-                    ),
-                  ),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                  child: transactions.maybeWhen(
+                      data: (data) {
+                        if (data.isEmpty) {
+                          return const Center(
+                            child: Text("You do not have any Transactions"),
+                          );
+                        } else {
+                          return MediaQuery.removeViewPadding(
+                            context: context,
+                            removeTop: true,
+                            child: ListView.separated(
+                              shrinkWrap: true,
+                              itemCount: data.length,
+                              itemBuilder: (context, index) {
+                                final value = data[index];
+                                return TransactionCard(
+                                  description: value.description ?? "",
+                                  time: value.dateCreated ?? DateTime.now(),
+                                  amount: value.amount ?? 0,
+                                  isDebit: value.type == "Cr" ? false : true,
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return const Line(
+                                  color: AppColors.kBorderColor,
+                                  thick: 1.2,
+                                );
+                              },
+                            ),
+                          );
+                        }
+                      },
+                      error: (error, stackTrace) => Center(
+                            child: Text(
+                              error.toString(),
+                            ),
+                          ),
+                      orElse: () => const Center(
+                            child: SpinKitRipple(
+                              color: AppColors.kDarkBlue,
+                            ),
+                          )),
                 ),
-                Center(
-                  child: Text('Credits'),
+
+                /// Credit
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                  child: transactions.maybeWhen(
+                      data: (data) {
+                        final realData = data
+                            .where((element) => element.type == "Cr")
+                            .toList();
+                        if (realData.isEmpty) {
+                          return const Center(
+                            child:
+                                Text("You do not have any Credit Transactions"),
+                          );
+                        } else {
+                          return MediaQuery.removeViewPadding(
+                            context: context,
+                            removeTop: true,
+                            child: ListView.separated(
+                              shrinkWrap: true,
+                              itemCount: realData.length,
+                              itemBuilder: (context, index) {
+                                final value = realData[index];
+                                if (value.type == "Cr") {
+                                  return TransactionCard(
+                                    description: value.description ?? "",
+                                    time: value.dateCreated ?? DateTime.now(),
+                                    amount: value.amount ?? 0,
+                                    isDebit: value.type == "Cr" ? false : true,
+                                  );
+                                }
+                                return Container();
+                              },
+                              separatorBuilder: (context, index) {
+                                return const Line(
+                                  color: AppColors.kBorderColor,
+                                  thick: 1.2,
+                                );
+                              },
+                            ),
+                          );
+                        }
+                      },
+                      error: (error, stackTrace) => Center(
+                            child: Text(
+                              error.toString(),
+                            ),
+                          ),
+                      orElse: () => const Center(
+                            child: SpinKitRipple(
+                              color: AppColors.kDarkBlue,
+                            ),
+                          )),
                 ),
-                Center(
-                  child: Text('Debits'),
-                )
+
+                /// Debit
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                  child: transactions.maybeWhen(
+                      data: (data) {
+                        final realData = data
+                            .where((element) => element.type == "Dr")
+                            .toList();
+                        if (realData.isEmpty) {
+                          return const Center(
+                            child:
+                                Text("You do not have any Debit Transactions"),
+                          );
+                        } else {
+                          return MediaQuery.removeViewPadding(
+                            context: context,
+                            removeTop: true,
+                            child: ListView.separated(
+                              shrinkWrap: true,
+                              itemCount: realData.length,
+                              itemBuilder: (context, index) {
+                                final value = realData[index];
+
+                                return TransactionCard(
+                                  description: value.description ?? "",
+                                  time: value.dateCreated ?? DateTime.now(),
+                                  amount: value.amount ?? 0,
+                                  isDebit: value.type == "Cr" ? false : true,
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return const Line(
+                                  color: AppColors.kBorderColor,
+                                  thick: 1.2,
+                                );
+                              },
+                            ),
+                          );
+                        }
+                      },
+                      error: (error, stackTrace) => Center(
+                            child: Text(
+                              error.toString(),
+                            ),
+                          ),
+                      orElse: () => const Center(
+                            child: SpinKitRipple(
+                              color: AppColors.kDarkBlue,
+                            ),
+                          )),
+                ),
               ],
             ),
           )

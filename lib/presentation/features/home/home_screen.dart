@@ -1,22 +1,41 @@
+import 'package:beta_sms_mobile/data/local/user_data_impl.dart';
 import 'package:beta_sms_mobile/presentation/features/home/subviews/home_image.dart';
 import 'package:beta_sms_mobile/presentation/features/home/subviews/more_solutions_widget.dart';
 import 'package:beta_sms_mobile/presentation/features/home/subviews/wallet_view.dart';
+import 'package:beta_sms_mobile/presentation/features/sms/bulk_send_sms.dart';
 import 'package:beta_sms_mobile/presentation/theme/colors.dart';
 import 'package:beta_sms_mobile/presentation/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  /// Method to determine greeting based on time of the day
+  String greeting() {
+    var hour = DateTime.now().hour;
+
+    if (hour < 12) {
+      return 'Good Morning,';
+    } else if (hour < 16) {
+      return 'Good Afternoon,';
+    } else {
+      return 'Good Evening,';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final user = ref.watch(localUserProvider);
+
     return Scaffold(
       body: Column(
         children: [
@@ -44,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Good Afternoon,',
+                            greeting(),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
@@ -54,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 5.h,
                           ),
                           Text(
-                            'Ajibola',
+                            user.value?.fullName?.split(" ").first ?? "",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge!
@@ -79,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   SizedBox(height: 50.h),
-                  const WalletView(balance: 15640.87, units: 200.3)
+                  const WalletView()
                 ],
               ),
             ),
@@ -105,7 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     subtitle:
                         'Create, personalize, and launch SMS campaigns from a simple step by step editor.',
                     buttonText: 'Send Bulk SMS',
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pushNamed(SendBulkSMSScreen.path);
+                    },
                   ),
                   SizedBox(height: 20.h),
                   MoreSolutionsWidget(

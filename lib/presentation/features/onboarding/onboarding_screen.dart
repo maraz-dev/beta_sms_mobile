@@ -120,7 +120,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                       MainButton(
                         text: 'Create An Account',
-                        onPressed: () => context.push(CreateAccountScreen.path),
+                        onPressed: () => context
+                            .pushReplacementNamed(CreateAccountScreen.path),
                         isPrimary: false,
                         color: AppColors.kSecondaryColor,
                         textColor: AppColors.kBlack,
@@ -129,7 +130,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         height: 20.h,
                       ),
                       GestureDetector(
-                        onTap: () => context.push(LoginScreen.path),
+                        onTap: () =>
+                            context.pushReplacementNamed(LoginScreen.path),
                         child: Center(
                           child: Text(
                             'Sign In',

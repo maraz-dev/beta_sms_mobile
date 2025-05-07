@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class TransactionCard extends StatelessWidget {
   final String description;
-  final String time;
+  final DateTime time;
   final double amount;
   final bool isDebit;
   const TransactionCard({
@@ -47,7 +47,7 @@ class TransactionCard extends StatelessWidget {
               height: 5.h,
             ),
             Text(
-              time,
+              time.toFormattedDateTime(),
               style: Theme.of(context)
                   .textTheme
                   .bodySmall!
@@ -61,7 +61,7 @@ class TransactionCard extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .bodyLarge!
-              .copyWith(fontWeight: FontWeight.w400),
+              .copyWith(fontWeight: FontWeight.w400, color: AppColors.kBlack),
         )
       ],
     );
